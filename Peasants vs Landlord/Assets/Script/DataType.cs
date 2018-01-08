@@ -18,7 +18,7 @@ public class DataType{
     /// <summary>
     /// Card's Color
     /// </summary>
-    public enum Suits
+    public enum Suit
     {
         Spade,
         Heart,
