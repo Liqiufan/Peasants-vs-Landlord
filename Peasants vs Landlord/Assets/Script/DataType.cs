@@ -32,8 +32,6 @@ public class DataType{
     /// </summary>
     public enum Point
     {
-        One,
-        Two,
         Three,
         Four,
         Five,
@@ -45,6 +43,8 @@ public class DataType{
         Jack,
         Queen,
         King,
+        One,
+        Two,
         SJoker,
         LJoker,
         None
