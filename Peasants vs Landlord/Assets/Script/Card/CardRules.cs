@@ -183,4 +183,223 @@ public class CardRules{
 
         return false;
     }
+
+    /// <summary>
+    /// The play cards is boom or not.
+    /// </summary>
+    /// <param name="cards"></param>
+    /// <returns></returns>
+    public static bool IsBoom(Card[] cards)
+    {
+        if (cards.Length != 4)
+            return false;
+
+        if (cards[0].GetCardPoint != cards[1].GetCardPoint)
+            return false;
+        if (cards[1].GetCardPoint != cards[2].GetCardPoint)
+            return false;
+        if (cards[2].GetCardPoint != cards[3].GetCardPoint)
+            return false;
+
+        return true;
+    }
+
+    /// <summary>
+    /// The play cards is joker boom or not.
+    /// </summary>
+    /// <param name="cards"></param>
+    /// <returns></returns>
+    public static bool IsJokerBoom(Card[] cards)
+    {
+        if (cards.Length != 2)
+            return false;
+
+        if (cards[0].GetCardPoint != DataType.Point.SJoker)
+            return false;
+        if (cards[1].GetCardPoint != DataType.Point.LJoker)
+            return false;
+
+        return true;
+    }
+
+
+    public static bool PopEnable(Card[] cards,out DataType.CardsType type)
+    {
+        type = DataType.CardsType.None;
+        bool isRule = false;
+
+        switch (cards.Length)
+        {
+            case 1:
+                isRule = true;
+                type = DataType.CardsType.Single;
+                break;
+            case 2:
+                if (IsDouble(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Double;
+                }
+                else if (IsJokerBoom(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.JokerBoom;
+                }
+                break;
+            case 3:
+                if (IsOnlyThree(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.OnlyThree;
+                }
+                break;
+            case 4:
+                if (IsBoom(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Boom;
+                }
+                else if (IsThreeAndOne(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.ThreeAndOne;
+                }
+                break;
+            case 5:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }
+                else if (IsThreeAndTwo(cards)){
+                    isRule = true;
+                    type = DataType.CardsType.ThreeAndTwo;
+                }
+                break;
+            case 6:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }else if (IsTripleStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.TripleStraight;
+                }else if (IsDoubleStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.DoubleStraight;
+                }
+                break;
+            case 7:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }
+                break;
+            case 8:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }else if (IsDoubleStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.DoubleStraight;
+                }
+                break;
+            case 9:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }else if (IsOnlyThree(cards))       //something wrong
+                {
+                    isRule = true;
+                    type = DataType.CardsType.OnlyThree;
+                }
+                break;
+            case 10:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }else if (IsDoubleStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.DoubleStraight;
+                }
+                break;
+            case 11:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }
+                break;
+            case 12:
+                if (IsStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.Straight;
+                }else if (IsOnlyThree(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.OnlyThree;
+                }else if (IsDoubleStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.OnlyThree;
+                }
+                break;
+            case 13:
+                break;
+            case 14:
+                if (IsDoubleStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.DoubleStraight;
+                }
+                break;
+            case 15:
+                if (IsOnlyThree(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.OnlyThree;
+                }
+                break;
+            case 16:
+                if(IsDoubleStraight(cards)){
+                    isRule = true;
+                    type = DataType.CardsType.DoubleStraight;
+                }
+                break;
+            case 17:
+                break;
+            case 18:
+                if (IsDoubleStraight(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.DoubleStraight;
+                }else if (IsOnlyThree(cards))
+                {
+                    isRule = true;
+                    type = DataType.CardsType.OnlyThree;
+                }
+                break;
+            case 19:
+                break;
+            case 20:
+                if (IsDoubleStraight(cards)){
+                    isRule = true;
+                    type = DataType.CardsType.DoubleStraight;
+                }
+                break;
+            default:
+                break;
+        }
+
+        return isRule;
+    }
 }
