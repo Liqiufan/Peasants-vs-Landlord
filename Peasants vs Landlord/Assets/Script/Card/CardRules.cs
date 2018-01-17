@@ -7,6 +7,11 @@ using UnityEngine;
 /// </summary>
 public class CardRules{
 
+    /// <summary>
+    /// Sort the card list of player.
+    /// </summary>
+    /// <param name="cards"></param>
+    /// <param name="ascending"></param>
 	public static void SortCards(List<Card> cards,bool ascending)
     {
         cards.Sort(
@@ -137,8 +142,11 @@ public class CardRules{
         if (cards.Length % 3 != 0)
             return false;
 
-        if (cards[0].GetCardPoint != cards[1].GetCardPoint && cards[0].GetCardPoint != cards[2].GetCardPoint && cards[1].GetCardPoint != cards[2].GetCardPoint)
-            return false;
+        for(int i = 0; i < cards.Length / 3; i++)
+        {
+            if (cards[i].GetCardPoint != cards[i + 1].GetCardPoint && cards[i].GetCardPoint != cards[i + 2].GetCardPoint && cards[i + 1].GetCardPoint != cards[i + 2].GetCardPoint)
+                return false;
+        }
 
         return true;
     }
