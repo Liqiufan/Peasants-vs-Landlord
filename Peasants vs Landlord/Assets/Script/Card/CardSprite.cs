@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Show the card pic
 /// </summary>
-public class CardScript : MonoBehaviour {
+public class CardSprite : MonoBehaviour {
 
     private Card card;
     public UISprite sprite;
