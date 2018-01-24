@@ -32,6 +32,7 @@ public class Card
     {
         makedSprite = false;
         this.cardName = cardName;
+        this.point = point;
         this.suit = suit;
         this.characterType = characterType;
     }
